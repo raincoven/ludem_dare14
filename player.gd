@@ -9,7 +9,7 @@ extends KinematicBody2D
 
 
 #pixels / second
-const GRAVITY = 40
+const GRAVITY = 0
 
 # Angle in degrees towards either side that the player can 
 # consider "floor".
