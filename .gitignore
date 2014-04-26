@@ -1,4 +1,4 @@
-dden system files
+#hidden system files
 *.DS_Store
 *[Tt]humbs.db
 *.Trashes

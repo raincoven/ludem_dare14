@@ -10,7 +10,7 @@ func _ready():
 	
 
 func _fixed_process(delta):
-	var stopped = move(Vector2(0,-3)).length() > 3
+	var stopped = move(Vector2(0,0)).length() > 3
 	if (stopped):
 		var lol = "lol"
 	
