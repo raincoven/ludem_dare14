@@ -2,6 +2,8 @@ extends Node2D
 var screen_size
 var obsSpeed = 1
 
+var gibbs = preload("res://gibbs.scn")
+
 var Obstacle = "obstacle"
 var play_button = "play_button"
 var player = "player"
@@ -33,6 +35,7 @@ func reset_obstacle():
 
 
 func start():
+	get_node("player").get_node("player_smoke").set_emitting(0)
 	get_node(play_button).set_disabled(true)
 	get_node(play_button).set_opacity(0)
 	screen_size = get_viewport_rect().size
@@ -53,11 +56,7 @@ func player_crashed():
 	
 func _fixed_process(delta):
 	if !dead:
-
 		var obs_bot_pos = get_node(Obstacle).get_pos()
-		
-		#if (check_intersect(get_node(player), get_node(Obstacle))):
-		#	player_crashed()
 		
 		if obs_bot_pos.y < -10:
 			reset_obstacle()
@@ -65,3 +64,9 @@ func _fixed_process(delta):
 func _on_Area2D_body_enter( body ):
 	if (body extends preload("res://player.gd")):
 		player_crashed()
+		var pieces = gibbs.instance()
+		var pos = get_node("player").get_pos()
+		pieces.set_pos(pos)
+		get_parent().add_child(pieces)
+		
+		get_node("player").get_node("player_smoke").set_emitting(1)
