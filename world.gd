@@ -27,8 +27,9 @@ func calc_offset():
 func reset_obstacle():
 	var offset = calc_offset()
 	var bottom_pos = get_node(Obstacle).get_pos()
+	var player_pos = get_node(player).get_pos()
 	bottom_pos.x = offset
-	bottom_pos.y = 400
+	bottom_pos.y = player_pos.y+300
 	get_node(Obstacle).set_pos(bottom_pos)
 
 
@@ -42,7 +43,7 @@ func start():
 	dead = false
 	obsSpeed = 2
 	var playerPos = get_node(player).get_pos()
-	playerPos.y = 200
+	playerPos.y = 300
 	get_node(player).set_pos(playerPos)
 
 	
@@ -55,11 +56,12 @@ func _fixed_process(delta):
 	if !dead:
 
 		var obs_bot_pos = get_node(Obstacle).get_pos()
+		var player_bot_pos = get_node(player).get_pos()
 		
 		#if (check_intersect(get_node(player), get_node(Obstacle))):
 		#	player_crashed()
 		
-		if obs_bot_pos.y < -10:
+		if obs_bot_pos.y <= player_bot_pos.y-200:
 			reset_obstacle()
 
 func _on_Area2D_body_enter( body ):
