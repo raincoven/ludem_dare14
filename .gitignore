@@ -1,0 +1,6 @@
+dden system files
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+.idea
+cookie.txt
